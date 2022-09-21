@@ -7,7 +7,7 @@
 #include "Critter.generated.h"
 
 UCLASS()
-class FIRSTPROJECT_API ACritter : public APawn
+class GAMEPROJECT_API ACritter : public APawn
 {
 	GENERATED_BODY()
 
@@ -25,24 +25,17 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Mesh")
-	class USkeletalMeshComponent* MeshComponent;
+	
+	UPROPERTY(EditAnywhere, Category="Mesh")
+	UStaticMeshComponent* MeshComponent;
 
 	UPROPERTY(EditAnywhere)
 	class UCameraComponent* Camera;
 
-	UPROPERTY(EditAnywhere, Category = "Pawn Movement")
+	UPROPERTY(EditAnywhere, Category="Pawn Movement")
 	float MaxSpeed;
-
-	UPROPERTY(EditAnywhere, Category = "Pawn Movement")
-	TSubclassOf<class AWeapon> Weapon;
-
-	UPROPERTY(EditAnywhere, Category = "Pawn Movement")
-	TArray<UClass*> WeaponArray;
-
+	
 private:
-
 	void MoveForward(float Value);
 	void MoveRight(float Value);
 
