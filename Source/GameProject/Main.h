@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "GameFramework/SpringArmComponent.h"
+#include "Camera/CameraComponent.h"
 #include "Main.generated.h"
 
 UCLASS()
@@ -14,6 +16,14 @@ class GAMEPROJECT_API AMain : public ACharacter
 public:
 	// Sets default values for this character's properties
 	AMain();
+
+	/** Camera boom positioning the camera behind the player */
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Camera", meta=(AllowPrivateAccess = "true"))
+	USpringArmComponent* CameraBoom;
+
+	/** Follow Camera */
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Camera", meta=(AllowPrivateAccess = "true"))
+	UCameraComponent* FollowCamera;
 
 protected:
 	// Called when the game starts or when spawned
