@@ -2,7 +2,10 @@
 
 
 #include "Main.h"
+
+#include "Components/CapsuleComponent.h"
 #include "Engine/World.h"
+#include "GameFramework/CharacterMovementComponent.h"
 
 // Sets default values
 AMain::AMain()
@@ -16,6 +19,9 @@ AMain::AMain()
 	CameraBoom->TargetArmLength = 600.f; // Camera follows at this distance
 	CameraBoom->bUsePawnControlRotation = true; // Rotate arm based on controller
 
+	// Set size for collision capsule
+	GetCapsuleComponent()->SetCapsuleSize(37.f, 102.f);
+
 	// Create follow camera
 	FollowCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("FollowCamera"));
 	FollowCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName);
@@ -26,6 +32,19 @@ AMain::AMain()
 	// Set our turn rates for input
 	BaseTurnRate = 65.f;
 	BaseLookUpRate = 65.f;
+
+	// Dont rotate when controller rotates
+	// let that affect the camera only
+	bUseControllerRotationYaw = false;
+	bUseControllerRotationPitch = false;
+	bUseControllerRotationRoll = false;
+
+	// configure character movement
+	GetCharacterMovement()->bOrientRotationToMovement = true; // character moves in the direction of input...
+	GetCharacterMovement()->RotationRate = FRotator(0.0f, 540.f, 0.0f); // ...at this rotation rate
+	GetCharacterMovement()->JumpZVelocity = 650.f;
+	GetCharacterMovement()->AirControl = 0.2f;
+	
 }
 
 // Called when the game starts or when spawned
