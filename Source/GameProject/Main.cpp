@@ -30,8 +30,8 @@ AMain::AMain()
 	FollowCamera->bUsePawnControlRotation = false;
 
 	// Set our turn rates for input
-	BaseTurnRate = 65.f;
-	BaseLookUpRate = 65.f;
+	BaseTurnRate = 50.f;
+	BaseLookUpRate = 50.f;
 
 	// Dont rotate when controller rotates
 	// let that affect the camera only
