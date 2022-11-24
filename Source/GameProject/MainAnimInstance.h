@@ -29,4 +29,7 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Movement)
 	APawn* Pawn;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Movement)
+	class AMain* Main;
 };
