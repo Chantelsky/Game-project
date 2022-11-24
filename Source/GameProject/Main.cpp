@@ -30,8 +30,8 @@ AMain::AMain()
 	FollowCamera->bUsePawnControlRotation = false;
 
 	// Set our turn rates for input
-	BaseTurnRate = 50.f;
-	BaseLookUpRate = 50.f;
+	BaseTurnRate = 25.f;
+	BaseLookUpRate = 25.f;
 
 	// Dont rotate when controller rotates
 	// let that affect the camera only
@@ -44,6 +44,12 @@ AMain::AMain()
 	GetCharacterMovement()->RotationRate = FRotator(0.0f, 540.f, 0.0f); // ...at this rotation rate
 	GetCharacterMovement()->JumpZVelocity = 650.f;
 	GetCharacterMovement()->AirControl = 0.2f;
+
+	MaxHealth = 100.f;
+	Health = 65.f;
+	MaxStamina = 350.f;
+	Stamina = 120.f;
+	Coins = 0;
 	
 }
 
@@ -113,6 +119,28 @@ void AMain::TurnAtRate(float Rate)
 void AMain::LookUpAtRate(float Rate)
 {
 	AddControllerPitchInput(Rate * BaseLookUpRate * GetWorld()->GetDeltaSeconds());
+}
+
+void AMain::DecrementHealth(float Amount)
+{
+	if (Health - Amount <= 0.f)
+	{
+		Health -= Amount;
+		Die();
+	}
+	else
+	{
+		Health -= Amount;
+	}
+}
+
+void AMain::IncrementCoins(int32 Amount)
+{
+	Coins += Amount;
+}
+
+void AMain::Die()
+{
 }
 
 

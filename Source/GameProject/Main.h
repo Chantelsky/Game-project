@@ -60,5 +60,31 @@ public:
 
 	FORCEINLINE USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
 	FORCEINLINE UCameraComponent* GetFollowCamera() const { return FollowCamera; }
+
+	/**
+	/*
+	/* Player stats
+	/* 
+	**/
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Player Stats")
+	float MaxHealth;
 	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Player Stats")
+	float Health;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Player Stats")
+	float MaxStamina;
+	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category="Player Stats")
+	float Stamina;
+	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category="Player Stats")
+	int32 Coins;
+
+	void DecrementHealth(float Amount);
+
+	void IncrementCoins(int32 Amount);
+
+	void Die();
 };
