@@ -39,7 +39,7 @@ public:
 	TArray<FVector> PickupLocations;
 	UFUNCTION(BlueprintCallable)
 	void ShowPickupLocations();
-
+	
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category="Enums")
 	EMovementStatus MovementStatus;
 
@@ -114,6 +114,13 @@ public:
 
 	FORCEINLINE USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
 	FORCEINLINE UCameraComponent* GetFollowCamera() const { return FollowCamera; }
+
+	//equipped weapon
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Items")
+	class AWeapon* EquippedWeapon;
+
+	//setter for equipped weapon
+	FORCEINLINE void SetEquippedWeapon(AWeapon* WeaponToSet){ EquippedWeapon = WeaponToSet; }
 
 	/**
 	/*
