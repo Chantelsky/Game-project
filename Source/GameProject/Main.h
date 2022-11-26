@@ -11,19 +11,21 @@
 UENUM(BlueprintType)
 enum class EMovementStatus : uint8
 {
-	EMS_Normal UMETA(DisplayName="Normal"),
-	EMS_Sprinting UMETA(DisplayName="Sprinting"),
-	EMS_MAX UMETA(DisplayName="DefaultMAX")
+	EMS_Normal		UMETA(DisplayName="Normal"),
+	EMS_Sprinting	UMETA(DisplayName="Sprinting"),
+	
+	EMS_MAX			UMETA(DisplayName="DefaultMAX")
 };
 
 UENUM(BlueprintType)
 enum class EStaminaStatus : uint8
 {
-	ESS_Normal UMETA(DisplayName="Normal"),
-	ESS_BelowMinimum UMETA(DisplayName="BelowMinimum"),
-	ESS_Exhausted UMETA(DisplayName="Exhausted"),
-	ESS_ExhaustedRecovering UMETA(DisplayName="ExhaustedRecovering"),
-	ESS_MAX UMETA(DisplayName="DefaultMAX")
+	ESS_Normal					UMETA(DisplayName="Normal"),
+	ESS_BelowMinimum			UMETA(DisplayName="BelowMinimum"),
+	ESS_Exhausted				UMETA(DisplayName="Exhausted"),
+	ESS_ExhaustedRecovering		UMETA(DisplayName="ExhaustedRecovering"),
+	
+	ESS_MAX						UMETA(DisplayName="DefaultMAX")
 };
 
 UCLASS()
@@ -112,6 +114,11 @@ public:
 	*/
 	void LookUpAtRate(float Rate);
 
+	void LMBDown();
+	bool bLMBDown;
+	void LMBUp();
+	bool bLMBUp;
+
 	FORCEINLINE USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
 	FORCEINLINE UCameraComponent* GetFollowCamera() const { return FollowCamera; }
 
@@ -119,8 +126,13 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Items")
 	class AWeapon* EquippedWeapon;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Items")
+	class AItem* ActiveOverlappingItem;
+
+	void SetEquippedWeapon(AWeapon* WeaponToSet);
 	//setter for equipped weapon
-	FORCEINLINE void SetEquippedWeapon(AWeapon* WeaponToSet){ EquippedWeapon = WeaponToSet; }
+	FORCEINLINE AWeapon* GetEquippedWeapon(){ return EquippedWeapon; }
+	FORCEINLINE void SetActiveOverlappingItem(AItem* Item){ ActiveOverlappingItem = Item; }
 
 	/**
 	/*
